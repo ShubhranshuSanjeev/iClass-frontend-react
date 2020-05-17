@@ -1,0 +1,54 @@
+.logo h1 {
+	color: #fff;
+	transition: all 0.1s ease-in-out;
+}
+
+.logo h1:hover {
+	color: #46455b;
+}
+
+.logo:hover {
+	text-decoration: none;
+}
+
+.AuthPageWrapper {
+	background-color: #46455b;
+	background-image: url("../../assests/back.svg");
+}
+
+.gradient {
+	background-image: linear-gradient(to right, #46455b 50%, #fff 50%);
+}
+
+.rightPanel {
+	background-image: url("../../assests/code3.svg");
+	background-repeat: no-repeat;
+	background-position: 75% 50%;
+	background-size: 90% 50%;
+	background-origin: border-box;
+}
+
+.rightPanel h1 {
+	font-family: "East Sea Dokdo", sans-serif;
+	font-size: 200px;
+	margin: 0 0 0 15px;
+}
+
+.cardTitle {
+	font-size: 24px;
+	font-weight: 700;
+	color: #4285f4;
+}
+.cardSubTitle {
+	font-size: 12px;
+}
+
+.formText {
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 12px;
+	font-weight: 500;
+}
+.myBtn {
+	font-size: 0.9rem;
+	font-weight: 700;
+}

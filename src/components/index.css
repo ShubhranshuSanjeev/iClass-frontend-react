@@ -1,0 +1,339 @@
+* {
+	font-family: Lato, sans-serif;
+	font-weight: 700;
+}
+
+.container {
+	width: 1366px;
+	max-width: none !important;
+}
+
+.container-fluid {
+	min-width: 1366px;
+}
+
+body,
+.navbar {
+	min-width: 1366px !important;
+}
+
+.navbar {
+	background-color: #46455b;
+}
+
+.my-nav-btn {
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
+.btn-primary {
+	background-color: #6c63ff;
+	border-color: #6c63ff;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+	background-color: #6c63ff;
+	border-color: #6c63ff;
+}
+.btn-success {
+	background-color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
+	background-color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+	box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+	color: #fff;
+	background-color: #6c63ff;
+	border-color: #6c63ff;
+}
+
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.btn-success:not(:disabled):not(.disabled).active,
+.btn-success:not(:disabled):not(.disabled):active,
+.show > .btn-success.dropdown-toggle {
+	color: #fff;
+	background-color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+
+.btn-outline-success {
+	color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+
+.btn-outline-success:not(:disabled):not(.disabled).active:focus,
+.btn-outline-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-outline-success.dropdown-toggle:focus {
+	box-shadow: none;
+}
+.btn-outline-success:not(:disabled):not(.disabled).active,
+.btn-outline-success:not(:disabled):not(.disabled):active,
+.show > .btn-outline-success.dropdown-toggle {
+	color: #fff;
+	background-color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+.btn-outline-success.focus,
+.btn-outline-success:focus {
+	box-shadow: none;
+}
+.btn-outline-success:hover {
+	color: #fff;
+	background-color: rgb(8, 189, 128);
+	border-color: rgb(8, 189, 128);
+}
+.btn.focus,
+.btn:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+.w-10 {
+	width: 18%;
+}
+
+.authFormPanel.one:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+}
+
+.authForm {
+	z-index: 15;
+	position: relative;
+	background: #ffffff;
+	width: 600px;
+	border-radius: 4px;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	margin: 100px auto 10px;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0.6);
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	line-height: 1.6em;
+}
+.authFormToggle {
+	z-index: 10;
+	position: absolute;
+	top: 60px;
+	right: 60px;
+	background: #ffffff;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	-webkit-transform-origin: center;
+	transform-origin: center;
+	-webkit-transform: translate(0, -25%) scale(0);
+	transform: translate(0, -25%) scale(0);
+	opacity: 0;
+	cursor: pointer;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.authFormToggle:before,
+.authFormToggle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 30px;
+	height: 4px;
+	background: #4285f4;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.authFormToggle:before {
+	-webkit-transform: translate(-50%, -50%) rotate(45deg);
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+.authFormToggle:after {
+	-webkit-transform: translate(-50%, -50%) rotate(-45deg);
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+.authFormToggle.visible {
+	-webkit-transform: translate(0, -25%) scale(1);
+	transform: translate(0, -25%) scale(1);
+	opacity: 1;
+}
+.authFormGroup {
+	display: -webkit-box;
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	margin: 0 0 20px;
+}
+.authFormGroup:last-child {
+	margin: 0;
+}
+.authFormGroup label {
+	display: block;
+	margin: 0 0 10px;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+}
+.two .authFormGroup label {
+	color: #ffffff;
+}
+.authFormGroup input {
+	outline: none;
+	display: block;
+	background: rgba(0, 0, 0, 0.1);
+	width: 100%;
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 12px 20px;
+	color: rgba(0, 0, 0, 0.6);
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 500;
+	line-height: inherit;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+}
+.authFormGroup input:focus {
+	color: rgba(0, 0, 0, 0.8);
+}
+.two .authFormGroup input {
+	color: #ffffff;
+}
+.two .authFormGroup input:focus {
+	color: #ffffff;
+}
+.authFormGroup button {
+	outline: none;
+	background: #4285f4;
+	width: 100%;
+	border: 0;
+	border-radius: 4px;
+	padding: 12px 20px;
+	color: #ffffff;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 500;
+	line-height: inherit;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.two .authFormGroup button {
+	background: #ffffff;
+	color: #4285f4;
+}
+
+.authFormGroup .authForm-remember input[type="checkbox"] {
+	display: inline-block;
+	width: auto;
+	margin: 0 10px 0 0;
+}
+.authFormGroup .authForm-recovery {
+	color: #4285f4;
+	font-size: 12px;
+	text-decoration: none;
+}
+.authFormPanel {
+	padding: 60px calc(5% + 60px) 60px 60px;
+	box-sizing: border-box;
+}
+.authFormPanel.one:before {
+	content: "";
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+}
+.authFormPanel.one.hidden:before {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+.authFormPanel.two {
+	z-index: 5;
+	position: absolute;
+	top: 0;
+	left: 95%;
+	background: #4285f4;
+	width: 100%;
+	min-height: 100%;
+	padding: 60px calc(10% + 60px) 60px 60px;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+.authFormPanel.two:before,
+.authFormPanel.two:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 60px;
+	left: 1.5%;
+	background: rgba(255, 255, 255, 0.2);
+	height: 30px;
+	width: 2px;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+}
+.authFormPanel.two:after {
+	left: 3%;
+}
+.authFormPanel.two:hover {
+	left: 93%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.authFormPanel.two:hover:before,
+.authFormPanel.two:hover:after {
+	opacity: 0;
+}
+.authFormPanel.two.active {
+	left: 10%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	cursor: default;
+}
+.authFormPanel.two.active:before,
+.authFormPanel.two.active:after {
+	opacity: 0;
+}
+.authFormHeader {
+	margin: 0 0 40px;
+}
+.authFormHeader h1 {
+	padding: 4px 0;
+	color: #4285f4;
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.two .authFormHeader h1 {
+	position: relative;
+	z-index: 40;
+	color: #ffffff;
+}

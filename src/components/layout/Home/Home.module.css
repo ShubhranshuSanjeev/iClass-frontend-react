@@ -1,0 +1,87 @@
+.myNav {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #46455b;
+	min-width: 1366px !important;
+	z-index: 3;
+}
+
+.myNavBtn {
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
+.homeWrapper {
+	background-color: #46455b;
+	position: relative;
+	z-index: 0;
+	overflow: hidden;
+	height: 754px;
+}
+
+.homeBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-image: url("../../../assests/back.svg");
+	z-index: -1;
+}
+
+.homeContent {
+	position: relative;
+	height: 100%;
+}
+
+.homeImageContainer {
+	position: absolute;
+	height: 100%;
+	top: 50%;
+	right: 0;
+	transform: translate(0, -36%);
+}
+
+.homeImageContainer img {
+	position: absolute;
+	top: 0px;
+	right: -80px;
+	width: 950px;
+}
+
+.homeTextContainer {
+	position: relative;
+	top: 52%;
+	transform: translateY(-50%);
+	padding: 0 0 0 70px;
+	color: #fff;
+}
+
+.homeTextIcon {
+	position: absolute;
+	top: -56%;
+	left: -1.7%;
+	transform-origin: center;
+	transform: rotate(-25deg);
+}
+
+h1.homeText {
+	font-family: "Signika Negative", sans-serif;
+	font-weight: bold;
+	font-size: 72px;
+	line-height: 105%;
+	position: relative;
+}
+
+.homeTextHighlight {
+	color: #6c63ff;
+	font-size: 120px;
+	font-family: "East Sea Dokdo", sans-serif;
+}
+
+p.homeText {
+	font-family: "Signika Negative", sans-serif;
+	font-size: 21px;
+	font-weight: 400;
+}
