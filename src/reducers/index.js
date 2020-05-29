@@ -1,14 +1,24 @@
 import { combineReducers } from "redux";
-import auth from "./authReducers";
+import auth from "./auth";
 import errors from "./errors";
 import messages from "./messages";
-import classrooms from './classroomReducers';
-import assignments from './assignmentsReducers';
+import classrooms from './classroom';
+import assignments from './assignments';
+import submissions from './submissions';
+import members from './members';
+import joinRequests from './joinRequests';
+import events from './events';
+import referenceMaterials from './referenceMaterials';
 
 export default combineReducers({
   auth,
   errors,
   messages,
   classrooms,
-  assignments
+  assignments,
+  submissions,
+  members,
+  joinRequests,
+  events,
+  referenceMaterials
 });

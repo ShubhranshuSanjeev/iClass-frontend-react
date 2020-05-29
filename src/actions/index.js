@@ -17,7 +17,6 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   const token = getState().auth.token;
-  console.log("Called ", token);
   const config = {
     headers: { "Content-Type": "application/json" },
   };
@@ -25,7 +24,6 @@ export const loadUser = () => (dispatch, getState) => {
   if (token) {
     config.headers["Authorization"] = `Token ${token}`;
   }
-  console.log(config);
   axios
     .get("/auth/user", config)
     .then(res => {
@@ -35,7 +33,6 @@ export const loadUser = () => (dispatch, getState) => {
     })
     .catch(err => {
       setTimeout(() => {
-        console.log(err.response);
         const errors = {
           msg: err.response.data,
           status: err.response.status,
@@ -48,7 +45,6 @@ export const loadUser = () => (dispatch, getState) => {
 
 export const registerUser = formValues => dispatch => {
   dispatch({ type: REGISTER_USER_START });
-  console.log(formValues);
 
   const config = {
     headers: { "Content-Type": "application/json" },
@@ -75,7 +71,6 @@ export const registerUser = formValues => dispatch => {
     is_student,
     is_teacher,
   });
-  console.log(body);
   axios
     .post("/auth/register", body, config)
     .then(res => {
@@ -102,7 +97,6 @@ export const registerUser = formValues => dispatch => {
 
 export const loginUser = formValues => dispatch => {
   dispatch({ type: AUTH_START });
-  console.log(formValues);
 
   const config = {
     headers: { "Content-Type": "application/json" },
@@ -110,7 +104,6 @@ export const loginUser = formValues => dispatch => {
 
   const { email, password } = formValues;
   const body = JSON.stringify({ email, password });
-  console.log(body);
 
   axios
     .post("/auth/login", body, config)
@@ -128,3 +121,22 @@ export const loginUser = formValues => dispatch => {
       }, 1000);
     });
 };
+
+export const logoutUser = () => (dispatch, getState) => {
+  const { token } = getState().auth;
+  const config = {
+    headers: { "Content-Type": "application/json" },
+  };
+
+  if (token) {
+    config.headers["Authorization"] = `Token ${token}`;
+  }
+
+  axios.post('/auth/logout', {}, config)
+    .then(res => {
+      dispatch({ type: SIGN_OUT });
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+}

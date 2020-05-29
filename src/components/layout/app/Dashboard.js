@@ -4,12 +4,43 @@ import { Link } from 'react-router-dom';
 
 import { fetchClassrooms } from '../../../actions/classroom';
 import notebook from '../../../assests/working.svg';
-import personal_notebook from '../../../assests/process.svg';
 
 import styles from './App.module.css';
 class Dashboard extends Component {
   componentDidMount() {
     this.props.fetchClassrooms()
+  }
+
+  getActions() {
+    const { is_student, is_teacher } = this.props;
+    if (is_student)
+      return (
+        <Link to="/join-classroom">
+          <div className="card" style={{ position: "relative" }}>
+            <div className="card-img-top h-100" style={{ backgroundColor: "#cfccff", overflow: "hidden", position: "relative" }}>
+              <img src={notebook} alt="notebook" width="100%" style={{ position: "relative", top: "14px" }} />
+            </div>
+            <div className="overlay h-100 w-100 d-flex justify-content-center align-items-center flex-column" style={{ position: "absolute", top: "0", left: "0", backgroundColor: "rgba(207, 204, 255, 0.5)" }}>
+              <span className="material-icons" style={{ display: "block", fontSize: "50px", }}>add</span>
+              <h4>Join a Classroom</h4>
+            </div>
+          </div>
+        </Link>
+      );
+    if (is_teacher)
+      return (
+        <Link to="/classrooms">
+          <div className="card" style={{ position: "relative" }}>
+            <div className="card-img-top h-100" style={{ backgroundColor: "#cfccff", overflow: "hidden", position: "relative" }}>
+              <img src={notebook} alt="notebook" width="100%" style={{ position: "relative", top: "14px" }} />
+            </div>
+            <div className="overlay h-100 w-100 d-flex justify-content-center align-items-center flex-column" style={{ position: "absolute", top: "0", left: "0", backgroundColor: "rgba(207, 204, 255, 0.5)" }}>
+              <span className="material-icons" style={{ display: "block", fontSize: "50px", }}>add</span>
+              <h4>Create Classroom</h4>
+            </div>
+          </div>
+        </Link>
+      );
   }
 
   renderClassroomList() {
@@ -19,7 +50,7 @@ class Dashboard extends Component {
       const idx = Math.ceil(Math.random() * 2);
       const img = idx === 1 ? notebook : notebook;
       return (
-        <div className="col-3 mx-auto" key={classroom.id}>
+        <div className="col-3 my-3" key={classroom.id}>
           <Link to={`/classrooms/${classroom.id}`} >
             <div className="card" style={{ border: "1px solid rgba(0,0,0,0.125)", borderRadius: "0" }}>
               <div className="card-img-top" style={{ backgroundColor: "#cfccff", height: "130px", borderRadius: "0", position: "relative", overflow: "hidden" }}>
@@ -52,16 +83,9 @@ class Dashboard extends Component {
                 </div>
                 <div className="row flex-wrap">
                   {this.renderClassroomList()}
+
                   <div className="col-3 my-auto">
-                    <div className="card" style={{ position: "relative" }}>
-                      <div className="card-img-top h-100" style={{ backgroundColor: "#cfccff", overflow: "hidden", position: "relative" }}>
-                        <img src={notebook} alt="notebook" width="100%" style={{ position: "relative", top: "14px" }} />
-                      </div>
-                      <div className="overlay h-100 w-100 d-flex justify-content-center align-items-center flex-column" style={{ position: "absolute", top: "0", left: "0", backgroundColor: "rgba(207, 204, 255, 0.5)" }}>
-                        <span className="material-icons" style={{ display: "block", fontSize: "50px", }}>add</span>
-                        <h4>Join a Classroom</h4>
-                      </div>
-                    </div>
+                    {this.getActions()}
                   </div>
                 </div>
               </div>
@@ -78,7 +102,8 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { classrooms: Object.values(state.classrooms) };
+  const { is_student, is_teacher } = state.auth.user;
+  return { classrooms: Object.values(state.classrooms), is_student, is_teacher };
 };
 
 export default connect(mapStateToProps, { fetchClassrooms })(Dashboard);

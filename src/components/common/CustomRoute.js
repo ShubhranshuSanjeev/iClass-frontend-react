@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
+import NotFound404 from '../common/404NotFound';
 import Loader from "../common/Loader";
 
 const CustomRoute = ({
@@ -9,19 +10,19 @@ const CustomRoute = ({
   auth,
   guestRoute,
   privateRoute,
+  teacherRoute,
   ...rest
 }) => {
-  console.log('Intial', rest);
   if (auth.isLoading) return <Loader />;
   else if (auth.isAuthenticated) {
-    console.log('Authenticated', rest);
     if (guestRoute) return <Redirect to="/dashboard" />;
-    else
+    else {
+      if (auth.user.is_student && teacherRoute) return <NotFound404 />;
       return (
         <Route {...rest} render={props => <Component {...props} />} />
       );
+    }
   } else {
-    console.log('Not Authenticated', rest);
     if (privateRoute) return <Redirect to="/login" />;
     else
       return (
