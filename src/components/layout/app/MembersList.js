@@ -51,7 +51,7 @@ class Members extends Component {
         }}>
           <th scope="row" style={{ verticalAlign: "middle" }}>{++i}</th>
           <td style={{ verticalAlign: "middle" }}>{member.student.first_name + ' ' + member.student.last_name}</td>
-          {this.getAction()}
+          {this.getAction(member)}
         </tr >
       );
     });

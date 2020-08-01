@@ -5,6 +5,7 @@ import messages from "./messages";
 import classrooms from './classroom';
 import assignments from './assignments';
 import submissions from './submissions';
+import quiz from './quiz';
 import members from './members';
 import joinRequests from './joinRequests';
 import events from './events';
@@ -17,6 +18,7 @@ export default combineReducers({
   classrooms,
   assignments,
   submissions,
+  quiz,
   members,
   joinRequests,
   events,
