@@ -2,52 +2,41 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withAlert } from 'react-alert';
 import { Link } from 'react-router-dom';
-
+import { myBtn } from './App.module.css';
 import { fetchQuizzes } from '../../../actions/quiz';
 
 class Quiz extends Component{
 
-  componentDidMount() {
-    const { classroomId, fetchQuizzes } = this.props;
-    fetchQuizzes(classroomId);
+  componentDidMount(){
+    this.props.activateMenuItem("quiz");
+  }
+
+  getAddButton() {
+    const { is_student, is_teacher, match : { params : { id : classroomId } } } = this.props;
+    if (is_student) return <></>;
+    if (is_teacher)
+      return (
+        <div className="btn-group">
+          <button type="button" className="btn btn-primary pr-0"><span className="material-icons">add</span></button>
+          <Link to={`/classrooms/${classroomId}/quiz/create`} className="btn btn-primary pl-0">
+            Add Quiz
+          </Link>
+        </div>
+      );
   }
 
   getActions() {
     const { is_student } = this.props;
     if( is_student ){
       return (
-        <button
-          className="btn btn-primary"
-          style={{
-            fontWeight: "700",
-            fontSize: "13px",
-          }}
-        >
-          Attempt Quiz
-        </button>
+        <button className={`btn btn-primary ${myBtn}`}>Attempt Quiz</button>
       );
     }
     else {
       return (
         <>
-          <button
-            className="btn btn-success mb-2"
-            style={{
-              fontWeight: "700",
-              fontSize: "13px",
-            }}
-          >
-            Settings
-          </button>
-          <button
-            className="btn btn-primary"
-            style={{
-              fontWeight: "700",
-              fontSize: "13px",
-            }}
-          >
-            Manage Questions
-          </button>
+          <button className={`btn btn-success mb-2 ${myBtn}`}>Settings</button>
+          <button className={`btn btn-primary ${myBtn}`}>Manage Questions</button>
         </>
       );
     }
@@ -87,6 +76,9 @@ class Quiz extends Component{
       <div className="row">
         <div className="col-12">
           {this.renderQuizList()}
+        </div>
+        <div className="col-12 d-flex justify-content-center">
+          {this.getAddButton()}
         </div>
       </div>
     );
