@@ -5,13 +5,13 @@ import { fetchClassroomStudent, deleteClassroomStudent } from '../../../actions/
 
 class Members extends Component {
 
-  componentDidMount() {
-    const { fetchClassroomStudent, classroomId } = this.props;
-    fetchClassroomStudent(classroomId);
+  componentDidMount(){
+    this.props.activateMenuItem("members");
   }
 
   onClick = (id) => {
-    const { deleteClassroomStudent, classroomId } = this.props;
+    const { deleteClassroomStudent, match : { params: { id : classroomId } } } = this.props;
+    console.log(this.props);
     deleteClassroomStudent(classroomId, id);
   }
 

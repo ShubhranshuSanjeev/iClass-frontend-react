@@ -60,7 +60,7 @@ class AssignmentForm extends React.Component {
         </div>
         <div className="form-row form-group">
           <div className="col">
-            <label htmlFor="email">Max Marks</label>
+            <label htmlFor="maxMarks">Max Marks</label>
             <input
               name="maxMarks"
               type="number"

@@ -5,15 +5,20 @@ import { Link } from 'react-router-dom';
 
 import { submitAssignment } from '../../../actions/classroom';
 
-class Assignment extends Component {
+class AssignmentList extends Component {
   state = {
     clicked: false,
     id: 0,
     file: null,
   }
 
+  componentDidMount(){
+    this.props.activateMenuItem("assignments");
+  }
+
   onChange = (event) => {
-    this.setState({ ...this.state, file: event.target.files[0] });
+    if(this.props.is_student)
+      this.setState({ ...this.state, file: event.target.files[0] });
   }
 
   onClick = (id) => {
@@ -24,8 +29,7 @@ class Assignment extends Component {
     event.preventDefault();
     if (!this.state.file) this.props.alert.error('Choose a file');
     else {
-      const { submitAssignment } = this.props;
-      const { classroomId } = this.props;
+      const { submitAssignment, match : { params : { id : classroomId }} } = this.props;
       submitAssignment(this.state.file, classroomId, id);
       this.setState({ clicked: false, id: 0, file: null });
     }
@@ -42,13 +46,13 @@ class Assignment extends Component {
   }
 
   getAddButton() {
-    const { is_student, is_teacher, classroomId } = this.props;
+    const { is_student, is_teacher, match:{ url } } = this.props;
     if (is_student) return <></>;
     if (is_teacher)
       return (
         <div className="btn-group">
           <button type="button" className="btn btn-primary pr-0"><span className="material-icons">add</span></button>
-          <Link to={`/classrooms/${classroomId}/assignments`} className="btn btn-primary pl-0">
+          <Link to={`${url}/create`} className="btn btn-primary pl-0">
             Add Assignment
           </Link>
         </div>
@@ -56,7 +60,7 @@ class Assignment extends Component {
   }
 
   getActions(assignment) {
-    const { is_student, is_teacher, classroomId } = this.props;
+    const { is_student, is_teacher, match:{ url } } = this.props;
     const { clicked, id } = this.state;
 
     if (is_student) {
@@ -90,7 +94,7 @@ class Assignment extends Component {
       return <Link className='btn btn-primary' style={{
         fontWeight: "700",
         fontSize: "13px",
-      }} to={`/classrooms/${classroomId}/assignments/${assignment.id}`}>Open</Link>;
+      }} to={`${url}/${assignment.id}`}>Open</Link>;
     }
   }
 
@@ -128,6 +132,8 @@ class Assignment extends Component {
   }
 
   render() {
+    // const { clicked, id } = this.state;
+    // const { is_teacher } = this.props;
     return (
       <div className="row">
         <div className="col-12">
@@ -164,4 +170,4 @@ const mapStateToProps = (state) => {
   return { assignments: Object.values(state.assignments), is_student, is_teacher };
 };
 
-export default connect(mapStateToProps, { submitAssignment })(withAlert()(Assignment));
+export default connect(mapStateToProps, { submitAssignment })(withAlert()(AssignmentList));

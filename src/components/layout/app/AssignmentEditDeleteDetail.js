@@ -12,13 +12,6 @@ class Assignment extends Component {
     return res;
   }
 
-  componentDidMount() {
-    const { fetchAssignment, fetchClassroom, match } = this.props;
-    const { classroomId, id } = match.params;
-    fetchClassroom(classroomId);
-    fetchAssignment(classroomId, id);
-  }
-
   handleDelete = () => {
     const { assignment, classroom, deleteAssignment } = this.props;
     deleteAssignment(classroom.id, assignment.id);
@@ -33,34 +26,37 @@ class Assignment extends Component {
     const { classroom, assignment } = this.props;
     if (!classroom || !assignment) return <></>;
     return (
-      <div className="container-fluid pt-5" style={{ minHeight: "100vh" }}>
-        <div className="row">
-          <div className="col-12">
-            <div className="row px-2 justify-content-around">
-              <div className={`${styles.classroomWrapper} d-flex justify-content-around`}>
-                <div className={`${styles.classroomContent} p-4`}>
-                  <div className="content-header w-100 d-flex justify-content-between align-items-center">
-                    <h1 className={`${styles.courseName}`}>{`${classroom.course_name} > ${assignment.description}`}</h1>
-                    <button className={`btn btn-danger ${styles.myBtn} d-flex align-items-center`} onClick={this.handleDelete}>
-                      <span className="material-icons mr-1">delete</span>
-                      <span>Delete</span>
-                    </button>
-                  </div>
-                  <hr style={{ marginTop: "8px" }} />
+      // <div className="container-fluid pt-5" style={{ minHeight: "100vh" }}>
+      //   <div className="row">
+      //     <div className="col-12">
+      //       <div className="row px-2 justify-content-around">
+      //         <div className={`${styles.classroomWrapper} d-flex justify-content-around`}>
+      //           <div className={`${styles.classroomContent} p-4`}>
+      //             <div className="content-header w-100 d-flex justify-content-between align-items-center">
+      //               <h1 className={`${styles.courseName}`}>{`${classroom.course_name} > ${assignment.description}`}</h1>
+
+      //             </div>
+                  // <hr style={{ marginTop: "8px" }} />
+                  <>
                   <div className="card">
                     <div className={`card-body ${styles.formText}`}>
                       {this.props.assignment ? <AssignmentForm buttonText='Save' initialValue={this.getInitialValues()} onSubmit={this.onSubmit} /> : <></>}
+                      <button className={`btn btn-danger ${styles.myBtn} d-flex align-items-center`} onClick={this.handleDelete}>
+                        <span className="material-icons mr-1">delete</span>
+                        <span>Delete</span>
+                      </button>
                     </div>
                   </div>
                   <hr />
                   <h4>Submissions</h4>
                   <SubmissionsList assignment={assignment} classroom={classroom} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                  </>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }

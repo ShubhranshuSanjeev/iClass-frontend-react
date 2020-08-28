@@ -9,7 +9,8 @@ import history from '../history';
 import { createMessage }  from './messages';
 import axios from '../api';
 
-export const createQuiz = (id, {name, maxAttempts, startTime, duration}) => (dispatch, getState) => {
+export const createQuiz = (id, {name, maxAttempts, startTime, endTime, duration}) => (dispatch, getState) => {
+
   const { token } = getState().auth;
   const config = {
     headers: { 'Content-Type': 'application/json' },
@@ -22,12 +23,18 @@ export const createQuiz = (id, {name, maxAttempts, startTime, duration}) => (dis
     name: name,
     max_attempts: maxAttempts,
     start_time: startTime,
+    end_time: endTime,
     duration: duration
   }
 
   axios.post(`/classrooms/${id}/quizzes`, body, config)
     .then(res => {
-      console.log(res.data);
+      history.push(`/classrooms/${id}/quiz`);
+      dispatch(
+        createMessage({
+          quiz: res.data.message
+        })
+      );
     })
     .catch(err => {
       console.log(err);

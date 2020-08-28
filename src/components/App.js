@@ -18,8 +18,12 @@ import JoinClass from './layout/app/JoinClass';
 import AssignmentsCreate from './layout/app/AssignmentsCreate';
 import ClassroomsCreate from './layout/app/ClassroomsCreate';
 import ReferenceMaterialsCreate from "./layout/app/ReferenceMaterialsCreate";
-import Assignment from './layout/app/AssignmentEditDeleteDetail';
-import ReferenceMaterial from './layout/app/ReferenceMaterialsEditDeleteDetail';
+import QuizCreate from "./layout/app/QuizCreate";
+import AssignmentEditDeleteDetail from "./layout/app/AssignmentEditDeleteDetail";
+import AssignmentsList from "./layout/app/AssignmentsList";
+import ReferenceMaterialsList from "./layout/app/ReferenceMaterialsList";
+import ReferenceMaterialsEditDeleteDetail from "./layout/app/ReferenceMaterialsEditDeleteDetail";
+import QuizList from "./layout/app/QuizList";
 
 const options = {
   position: positions.TOP_CENTER,
@@ -49,12 +53,16 @@ class App extends Component {
           <CustomRoute path="/login" exact component={Login} guestRoute />
           <CustomRoute path="/dashboard" exact component={Dashboard} privateRoute />
           <CustomRoute path="/classrooms" exact component={ClassroomsCreate} privateRoute />
-          <CustomRoute path="/classrooms/:id" exact component={Classroom} privateRoute />
           <CustomRoute path="/join-classroom" exact component={JoinClass} privateRoute />
-          <CustomRoute path="/classrooms/:classroomId/assignments" exact component={AssignmentsCreate} privateRoute teacherRoute />
-          <CustomRoute path="/classrooms/:classroomId/assignments/:id" exact component={Assignment} privateRoute teacherRoute />
-          <CustomRoute path="/classrooms/:classroomId/referenceMaterials" exact component={ReferenceMaterialsCreate} privateRoute teacherRoute />
-          <CustomRoute path="/classrooms/:classroomId/referenceMaterials/:id" exact component={ReferenceMaterial} privateRoute teacherRoute />
+          <CustomRoute path="/classrooms/:classroomId/assignments/create" exact component={AssignmentsCreate} privateRoute teacherRoute />
+          <CustomRoute path="/classrooms/:classroomId/referenceMaterials/create" exact component={ReferenceMaterialsCreate} privateRoute teacherRoute />
+          <CustomRoute path="/classrooms/:classroomId/quiz/create" exact component={QuizCreate} privateRoute teacherRoute />
+          <CustomRoute path="/classrooms/:classroomId" component={Classroom} privateRoute />
+            {/* <CustomRoute path="/classrooms/:classroomId/assignments_all" exact component={AssignmentsList} privateRoute/>
+            <CustomRoute path="/classrooms/:classroomId/assignments/:id" exact component={AssignmentEditDeleteDetail} privateRoute teacherRoute/>
+            <CustomRoute path="/classrooms/:classroomId/referenceMaterials_all" exact component={ReferenceMaterialsList} privateRoute />
+            <CustomRoute path="/classrooms/:classroomId/referenceMaterials/:id" exact component={ReferenceMaterialsEditDeleteDetail} privateRoute teacherRoute />
+            <CustomRoute path="/classrooms/:classroomId/quiz_all" exact component={QuizList} privateRoute /> */}
         </Switch>
       );
     }

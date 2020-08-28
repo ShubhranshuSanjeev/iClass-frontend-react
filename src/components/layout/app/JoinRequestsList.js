@@ -5,9 +5,8 @@ import { fetchJoinRequests, acceptJoinRequest, declineJoinRequest } from '../../
 
 class Members extends Component {
 
-  componentDidMount() {
-    const { fetchJoinRequests, classroomId } = this.props;
-    fetchJoinRequests(classroomId);
+  componentDidMount(){
+    this.props.activateMenuItem("joinRequests");
   }
 
   acceptRequest = (id) => {

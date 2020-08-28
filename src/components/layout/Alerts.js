@@ -30,6 +30,7 @@ class Alerts extends Component {
       if (message.submission) alert.success(message.submission);
       if (message.member) alert.success(message.member);
       if (message.joinRequest) alert.success(message.joinRequest);
+      if (message.quiz) alert.success(message.quiz);
     }
   }
   render() {

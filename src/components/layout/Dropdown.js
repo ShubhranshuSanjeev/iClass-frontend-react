@@ -94,7 +94,7 @@ class Dropdown extends Component {
 							position: "absolute",
 							left: "0",
 							top: "100%",
-							boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.12)",
+              boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.12)",
 						}}
 					>
 						<div className="row">

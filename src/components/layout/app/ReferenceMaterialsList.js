@@ -6,13 +6,12 @@ import { fetchReferenceMaterials } from '../../../actions/classroom';
 
 class ReferenceMaterials extends Component {
 
-  componentDidMount() {
-    const { classroomId, fetchReferenceMaterials } = this.props;
-    fetchReferenceMaterials(classroomId);
+  componentDidMount(){
+    this.props.activateMenuItem("referenceMaterials");
   }
 
   getAddButton() {
-    const { is_student, is_teacher, classroomId } = this.props;
+    const { is_student, is_teacher, match : { params : { id : classroomId } } } = this.props;
     if (is_student) return <></>;
     if (is_teacher)
       return (
@@ -26,7 +25,7 @@ class ReferenceMaterials extends Component {
   }
 
   getActions(referenceMaterial) {
-    const { is_student, is_teacher, classroomId } = this.props;
+    const { is_student, is_teacher, match : { params : { id : classroomId } } } = this.props;
 
     if (is_teacher) {
       return <Link className='btn btn-primary' style={{

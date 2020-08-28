@@ -5,6 +5,10 @@ import ClassroomForm from './ClassroomForm';
 
 import styles from './App.module.css';
 class Classroom extends Component {
+  componentDidMount(){
+    console.log("updating menu item");
+    this.props.activateMenuItem("settings");
+  }
   getInitialValues() {
     const { room_number, course_name, joining_permission } = this.props.classroom;
     return { roomNumber: room_number, courseName: course_name, joiningPermission: joining_permission };
