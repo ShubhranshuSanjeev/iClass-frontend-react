@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAssignment, updateAssignment, fetchClassroom, deleteAssignment } from '../../../actions/classroom';
+import { updateAssignment, deleteAssignment, fetchAssignment } from '../../../actions/classroom';
 import AssignmentForm from './AssignmentForm';
 import SubmissionsList from './SubmissionsList';
 import styles from './App.module.css';
 
 class Assignment extends Component {
+  componentDidMount(){
+    const { fetchAssignment, match } = this.props;
+    const { classroomId, id } = match.params;
+    fetchAssignment(classroomId, id);
+  }
+
   getInitialValues() {
     const { description, max_marks, deadline, file, publish_grades } = this.props.assignment;
     const res = { description, deadline, file, maxMarks: max_marks, publishGrades: publish_grades };
@@ -66,4 +72,8 @@ const mapStateToProps = (state, ownProps) => {
   return { assignment: state.assignments[id], classroom: state.classrooms[classroomId] }
 }
 
-export default connect(mapStateToProps, { fetchAssignment, updateAssignment, fetchClassroom, deleteAssignment })(Assignment);
+export default connect(mapStateToProps, {
+  updateAssignment,
+  deleteAssignment,
+  fetchAssignment
+})(Assignment);
