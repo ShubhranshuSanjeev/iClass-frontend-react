@@ -17,6 +17,7 @@ import QuizList from "./QuizList";
 import JoinRequestsList from "./JoinRequestsList";
 import MembersList from "./MembersList";
 import ClassroomDetail from "./ClassroomEditDeleteDetail";
+import QuizEditDeleteDetail from './QuizEditDeleteDetail';
 
 import styles from "./App.module.css";
 import notebook from "../../../assests/working.svg";
@@ -31,7 +32,7 @@ class Classroom extends Component {
 		members: false,
     messages: false,
     mounted: false,
-	};
+  };
 
 	componentDidUpdate() {
     const {
@@ -48,7 +49,6 @@ class Classroom extends Component {
         match:{ params:{ classroomId } }
       }
     } = this;
-
     if (assignments) fetchAssignments(classroomId);
     else if(referenceMaterials) fetchReferenceMaterials(classroomId);
     else if(quiz) fetchQuizzes(classroomId);
@@ -171,6 +171,7 @@ class Classroom extends Component {
                   {is_teacher ? <CustomRoute path={`${path}`} exact component={props => <ClassroomDetail activateMenuItem={onClick} {...props} classroom={classroom} />} privateRoute teacherRoute /> : <Redirect to={`${url}/assignments`} />}
                   {is_teacher ? <CustomRoute path={`${path}/assignments/:id`} exact component={props => <AssignmentEditDeleteDetail {...props} />} privateRoute teacherRoute/> : <></>}
                   {is_teacher ? <CustomRoute path={`${path}/referenceMaterials/:id`} exact component={props => <ReferenceMaterialsEditDeleteDetail {...props} />} privateRoute teacherRoute /> : <></>}
+                  {is_teacher ? <CustomRoute path={`${path}/quiz/:id`} exact component={props => <QuizEditDeleteDetail {...props} />} privateRoute teacherRoute /> : <></>}
                 </div>
               </div>
               <div

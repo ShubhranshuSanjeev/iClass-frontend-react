@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withAlert } from 'react-alert';
 import { Link } from 'react-router-dom';
 import { myBtn } from './App.module.css';
-import { fetchQuizzes } from '../../../actions/quiz';
 
 class Quiz extends Component{
 
@@ -25,8 +24,8 @@ class Quiz extends Component{
       );
   }
 
-  getActions() {
-    const { is_student } = this.props;
+  getActions(id) {
+    const { is_student, match : { url } } = this.props;
     if( is_student ){
       return (
         <button className={`btn btn-primary ${myBtn}`}>Attempt Quiz</button>
@@ -35,8 +34,8 @@ class Quiz extends Component{
     else {
       return (
         <>
-          <button className={`btn btn-success mb-2 ${myBtn}`}>Settings</button>
-          <button className={`btn btn-primary ${myBtn}`}>Manage Questions</button>
+          <Link to={`${url}/${id}`} className={`btn btn-success mb-2 ${myBtn}`}>Settings</Link>
+          <Link to={`${url}/${id}`} className={`btn btn-primary ${myBtn}`}>Manage Questions</Link>
         </>
       );
     }
@@ -58,7 +57,7 @@ class Quiz extends Component{
                   </div>
                   <div className="col-4 d-flex justify-content-end">
                     <div className="w-75 d-flex flex-column justify-content-center">
-                      {this.getActions()}
+                      {this.getActions(quiz.id)}
                     </div>
                   </div>
                 </div>
@@ -90,4 +89,4 @@ const mapStateToProps = (state) => {
   return { quizzes: Object.values(state.quiz), is_student, is_teacher };
 };
 
-export default connect(mapStateToProps, { fetchQuizzes, })(Quiz);
+export default connect(mapStateToProps, {})(Quiz);

@@ -10,6 +10,7 @@ import members from './members';
 import joinRequests from './joinRequests';
 import events from './events';
 import referenceMaterials from './referenceMaterials';
+import quizPermissions from './quizPermissions';
 
 export default combineReducers({
   auth,
@@ -22,5 +23,6 @@ export default combineReducers({
   members,
   joinRequests,
   events,
-  referenceMaterials
+  referenceMaterials,
+  quizPermissions
 });

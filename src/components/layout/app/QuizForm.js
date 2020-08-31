@@ -29,10 +29,10 @@ class QuizForm extends Component{
   onChange = (event) => {
     if(event.target.name === "startTime" || event.target.name === "endTime"){
       const { startTime, endTime, changedOnce } = this.state;
-
       let dateObj = new Date(event.target.value);
+      console.log(event.target.value, dateObj.toISOString());
       let days = 0, hours = 0, minutes = 0, remainder;
-      let updatedValues = { [event.target.name] : dateObj, };
+      let updatedValues = { [event.target.name] : dateObj };
 
       if (endTime !== undefined || startTime !== undefined){
         const diff = dateObj - startTime;
@@ -120,6 +120,7 @@ class QuizForm extends Component{
   }
 
   render() {
+
     if(Object.keys(this.state).length === 0) return <></>;
     const {
       state: {
@@ -130,11 +131,13 @@ class QuizForm extends Component{
         },
         maxAttempts, enableQuizForAll,
         publishResults, actionType,
+        startTime, endTime
       },
       onChange,
       onSubmit
     } = this;
-
+    console.log(startTime ? startTime.toISOString(): 0);
+    console.log(endTime ? endTime.toISOString(): 0);
     return (
       <form className="px-3 w-100" onSubmit={onSubmit}>
         <div className="form-group">
@@ -167,6 +170,7 @@ class QuizForm extends Component{
               type="datetime-local"
               className="form-control"
               id="startTime"
+              value = {!startTime ? '' : startTime.toISOString().slice(0,-2)}
               onChange={onChange}
             />
           </div>
@@ -177,6 +181,7 @@ class QuizForm extends Component{
               type="datetime-local"
               className="form-control"
               id="endTime"
+              value = {!endTime ? '' : endTime.toISOString().slice(0,-2)}
               onChange={onChange}
             />
           </div>
